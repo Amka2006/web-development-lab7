@@ -1,11 +1,11 @@
 // ===== Цомгийн өгөгдөл =====
 // Зураг оруулах 3 арга (эхнийх нь байвал түүнийг ашиглана):
-//   1) img: 'https://...jpg'  → интернэт холбоос (доорх img: '' хэсэгт хийнэ)
-//   2) images/<key>.jpg       → lab06/images хавтсанд хийсэн файл
-//   3) Аль нь ч байхгүй бол доорх scene (зурсан дүр зураг) харагдана
+//   1) img: 'https://...jpg'  → интернэт холбоос
+//   2) images/<key>.jpg       → lab07/images хавтсанд хийсэн файл
+//   3) Аль нь ч байхгүй бол scene (зурсан дүр зураг) харагдана
 // Үнэ, хоног нь жишээ. Тоо, хэмжээг эх сурвалжтай нь тулгаж шалгаарай.
 const places = [
-  { key: 'khuvsgul', img: 'https://www.toursmongolia.com/uploads/mongolia%20lakes%20photo.jpg', name: 'Хөвсгөл нуур', region: 'Хойд', aimag: 'Хөвсгөл аймаг', days: 5, price: 1250000,
+  { key: 'khuvsgul', img: '', name: 'Хөвсгөл нуур', region: 'Хойд', aimag: 'Хөвсгөл аймаг', days: 5, price: 1250000,
     scene: { type: 'lake', sky: ['#5aa9d6', '#d3ecf8'], sun: '#fff3c4', far: '#3b6e94', near: '#2c5a55', water: '#2a7fae', pines: 1 },
     map: 'Lake Khuvsgul, Mongolia', dist: 'Мөрөн хотоос ~100 км', season: '6–9-р сар',
     text: 'Монголын хамгийн гүн цэнгэг устай нуур.',
@@ -148,7 +148,7 @@ const drawers = {
 };
 
 const sceneSvg = (g, i) => `
-  <svg class="scene" viewBox="0 0 400 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <svg class="card__scene" viewBox="0 0 400 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs><linearGradient id="sky${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${g.sky[0]}"/><stop offset="1" stop-color="${g.sky[1]}"/></linearGradient></defs>
     <rect width="400" height="540" fill="url(#sky${i})"/>${drawers[g.type](g)}
   </svg>`;
@@ -157,31 +157,31 @@ const grid = document.getElementById('galleryGrid');
 const fmt = (n) => '₮' + n.toLocaleString('en-US');
 const mapUrl = (q) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
 
-// ===== Картуудыг үүсгэх (--i нь stagger-ийн дугаар) =====
+// ===== Картуудыг үүсгэх (BEM класс, --i нь stagger-ийн дугаар) =====
 places.forEach((p, i) => {
   grid.insertAdjacentHTML('beforeend', `
-    <article class="card in" tabindex="0" data-region="${p.region}" style="--i:${i}" aria-label="${p.name}">
-      <div class="card-inner">
+    <article class="card card--in" tabindex="0" data-region="${p.region}" style="--i:${i}" aria-label="${p.name}">
+      <div class="card__inner">
 
-        <div class="face front">
+        <div class="card__face card__face--front">
           ${sceneSvg(p.scene, i)}
-          <img src="${p.img || `images/${p.key}.jpg`}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-          <span class="badge">${p.region}</span>
-          <span class="tag-price">${p.days} хоног</span>
-          <div class="cap"><h3>${p.name}</h3><p>${p.aimag}</p></div>
+          <img class="card__img" src="${p.img || `images/${p.key}.jpg`}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
+          <span class="card__badge">${p.region}</span>
+          <span class="card__tag">${p.days} хоног</span>
+          <div class="card__caption"><h3 class="card__title">${p.name}</h3><p class="card__sub">${p.aimag}</p></div>
         </div>
 
-        <div class="face back">
-          <div class="back-body">
-            <h3>${p.name}</h3>
-            <p class="where">${p.region} · ${p.aimag}</p>
-            <p class="desc">${p.text}</p>
-            <ul class="facts">${p.facts.map((f) => `<li>${f}</li>`).join('')}</ul>
-            <ul class="pills"><li>${p.dist}</li><li>${p.season}</li></ul>
-            <p class="price-line"><strong>${fmt(p.price)}</strong> / хүн · ${p.days} хоног</p>
-            <div class="back-actions">
-              <button class="back-btn" type="button" data-book="${p.key}">Захиалах</button>
-              <button class="back-btn alt" type="button" data-q="${p.map}" data-name="${p.name}"><span class="pin" aria-hidden="true"></span>Газрын зураг</button>
+        <div class="card__face card__face--back">
+          <div class="card__body">
+            <h3 class="card__name">${p.name}</h3>
+            <p class="card__where">${p.region} · ${p.aimag}</p>
+            <p class="card__desc">${p.text}</p>
+            <ul class="card__facts">${p.facts.map((f) => `<li class="card__fact">${f}</li>`).join('')}</ul>
+            <ul class="pills"><li class="pills__item">${p.dist}</li><li class="pills__item">${p.season}</li></ul>
+            <p class="card__price"><strong class="card__price-value">${fmt(p.price)}</strong> / хүн · ${p.days} хоног</p>
+            <div class="card__actions">
+              <button class="card__btn" type="button" data-book="${p.key}">Захиалах</button>
+              <button class="card__btn card__btn--alt" type="button" data-q="${p.map}" data-name="${p.name}"><span class="pin" aria-hidden="true"></span>Газрын зураг</button>
             </div>
           </div>
         </div>
@@ -199,13 +199,13 @@ grid.addEventListener('click', (e) => {
   const map = e.target.closest('[data-q]');
   if (map) { openMap(map.dataset.q, map.dataset.name); return; }
   const card = e.target.closest('.card');
-  if (card) card.classList.toggle('flipped');
+  if (card) card.classList.toggle('card--flipped');
 });
 
 grid.addEventListener('keydown', (e) => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('card')) {
     e.preventDefault();
-    e.target.classList.toggle('flipped');
+    e.target.classList.toggle('card--flipped');
   }
 });
 
@@ -219,11 +219,11 @@ chips.forEach((chip) => {
     cards.forEach((card) => {
       const show = filter === 'all' || card.dataset.region === filter;
       card.hidden = !show;
-      card.classList.remove('flipped', 'in');
+      card.classList.remove('card--flipped', 'card--in');
       if (show) {
         card.style.setProperty('--i', n++);   // stagger-ийг дахин тооцно
         void card.offsetWidth;                // animation-г дахин эхлүүлнэ
-        card.classList.add('in');
+        card.classList.add('card--in');
       }
     });
   });
@@ -246,12 +246,12 @@ function bookPlace(key) {
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  form.classList.add('checked');
+  form.classList.add('form--checked');
   if (!form.checkValidity()) { form.reportValidity(); msg.textContent = ''; return; }
   const name = document.getElementById('bName').value.trim();
   msg.textContent = `Баярлалаа, ${name}! Хүсэлтийг хүлээн авлаа. Бид тантай удахгүй холбогдоно.`;
   form.reset();
-  form.classList.remove('checked');
+  form.classList.remove('form--checked');
   document.getElementById('bPeople').value = 2;
 });
 
@@ -290,9 +290,9 @@ themeBtn.addEventListener('click', () => {
 const menuBtn = document.getElementById('menuToggle');
 const menu = document.getElementById('menu');
 menuBtn.addEventListener('click', () => {
-  const open = menu.classList.toggle('open');
+  const open = menu.classList.toggle('nav--open');
   menuBtn.setAttribute('aria-expanded', open);
 });
 menu.addEventListener('click', (e) => {
-  if (e.target.tagName === 'A') { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+  if (e.target.tagName === 'A') { menu.classList.remove('nav--open'); menuBtn.setAttribute('aria-expanded', 'false'); }
 });

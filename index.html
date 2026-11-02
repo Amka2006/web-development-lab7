@@ -8,33 +8,34 @@
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="style.css">
+ <!-- SCSS-ээс build хийсэн CSS -->
+ <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
  <div class="progress" aria-hidden="true"></div>
 
- <header class="site-header">
-  <a class="logo" href="#">Тал нутаг <span>Трэвел</span></a>
+ <header class="header">
+  <a class="header__logo" href="#">Тал нутаг <span class="header__logo-accent u-text-gold">Трэвел</span></a>
 
-  <div class="header-tools">
-   <a class="nav-cta" href="#zahialga">Аялал захиалах</a>
-   <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
-    <span class="theme-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Харанхуй горим</span>
+  <div class="header__tools">
+   <a class="header__cta" href="#zahialga">Аялал захиалах</a>
+   <button class="icon-btn" id="themeToggle" type="button" aria-pressed="false">
+    <span class="icon-btn__sun" aria-hidden="true"></span>
+    <span class="u-visually-hidden">Харанхуй горим</span>
    </button>
-   <button class="menu-toggle" id="menuToggle" type="button" aria-controls="menu" aria-expanded="false">
-    <span class="menu-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Цэс нээх</span>
+   <button class="icon-btn icon-btn--menu" id="menuToggle" type="button" aria-controls="menu" aria-expanded="false">
+    <span class="icon-btn__bars" aria-hidden="true"></span>
+    <span class="u-visually-hidden">Цэс нээх</span>
    </button>
   </div>
 
-  <nav class="navbar" id="menu" aria-label="Үндсэн цэс">
-   <ul class="nav-list">
-    <li><a class="nav-link" href="#gallery">Чиглэл</a></li>
-    <li><a class="nav-link" href="#packages">Багц</a></li>
-    <li><a class="nav-link" href="#culture">Ёс заншил</a></li>
-    <li><a class="nav-link" href="#video">Видео</a></li>
-    <li><a class="nav-link" href="#zahialga">Захиалга</a></li>
+  <nav class="nav" id="menu" aria-label="Үндсэн цэс">
+   <ul class="nav__list">
+    <li><a class="nav__link" href="#gallery">Чиглэл</a></li>
+    <li><a class="nav__link" href="#packages">Багц</a></li>
+    <li><a class="nav__link" href="#culture">Ёс заншил</a></li>
+    <li><a class="nav__link" href="#video">Видео</a></li>
+    <li><a class="nav__link" href="#zahialga">Захиалга</a></li>
    </ul>
   </nav>
  </header>
@@ -42,39 +43,39 @@
  <main>
   <!-- Hero -->
   <section class="hero">
-   <div class="hero-sun" aria-hidden="true"></div>
-   <span class="cloud c1" aria-hidden="true"></span>
-   <span class="cloud c2" aria-hidden="true"></span>
-   <div class="wrap hero-text">
-    <p class="eyebrow" style="--i:0">Монголын аяллын компани</p>
-    <h1 style="--i:1">Монголын сайхныг хамт нээе</h1>
-    <p style="--i:2">Хөвсгөл нуураас Говийн манхан хүртэл. Туршлагатай хөтөч, жижиг бүлэг, нүүдэлчин айлын зочломтгой байдалтай аялал.</p>
-    <div class="hero-actions" style="--i:3">
+   <div class="hero__sun" aria-hidden="true"></div>
+   <span class="hero__cloud hero__cloud--1" aria-hidden="true"></span>
+   <span class="hero__cloud hero__cloud--2" aria-hidden="true"></span>
+   <div class="wrap hero__body">
+    <p class="hero__item hero__eyebrow" style="--i:0">Монголын аяллын компани</p>
+    <h1 class="hero__item hero__title" style="--i:1">Монголын сайхныг хамт нээе</h1>
+    <p class="hero__item hero__lead" style="--i:2">Хөвсгөл нуураас Говийн манхан хүртэл. Туршлагатай хөтөч, жижиг бүлэг, нүүдэлчин айлын зочломтгой байдалтай аялал.</p>
+    <div class="hero__item hero__actions" style="--i:3">
      <a class="btn" href="#gallery">Аялал сонгох</a>
-     <a class="btn btn-ghost" href="#zahialga">Захиалга өгөх</a>
+     <a class="btn btn--ghost" href="#zahialga">Захиалга өгөх</a>
     </div>
-    <dl class="hero-stats" style="--i:4">
-     <div><dt>Чиглэл</dt><dd>12</dd></div>
-     <div><dt>Жилийн туршлага</dt><dd>8+</dd></div>
-     <div><dt>Аялагчид</dt><dd>3,500+</dd></div>
+    <dl class="hero__item hero__stats" style="--i:4">
+     <div><dt class="hero__stat-label">Чиглэл</dt><dd class="hero__stat-value">12</dd></div>
+     <div><dt class="hero__stat-label">Жилийн туршлага</dt><dd class="hero__stat-value">8+</dd></div>
+     <div><dt class="hero__stat-label">Аялагчид</dt><dd class="hero__stat-value">3,500+</dd></div>
     </dl>
    </div>
   </section>
 
   <!-- Trust bar -->
   <section class="trust" aria-label="Давуу тал">
-   <ul class="wrap trust-list">
-    <li>Туршлагатай хөтөч</li>
-    <li>Жижиг бүлэг (8 хүртэл)</li>
-    <li>Аюулгүй байдлын даатгал</li>
-    <li>Орон нутгийн гэр бааз</li>
+   <ul class="wrap trust__list">
+    <li class="trust__item">Туршлагатай хөтөч</li>
+    <li class="trust__item">Жижиг бүлэг (8 хүртэл)</li>
+    <li class="trust__item">Аюулгүй байдлын даатгал</li>
+    <li class="trust__item">Орон нутгийн гэр бааз</li>
    </ul>
   </section>
 
   <!-- Чиглэлүүд -->
   <section class="section" id="gallery">
-   <h2 class="section-title">Аяллын чиглэлүүд</h2>
-   <p class="lead">Картан дээр хулганаа аваачвал (утсан дээр товшвол) эргэж, ард талд нь үнэ, хоног, дэлгэрэнгүй мэдээлэл болон газрын зураг гарна.</p>
+   <h2 class="section__title">Аяллын чиглэлүүд</h2>
+   <p class="section__lead">Картан дээр хулганаа аваачвал (утсан дээр товшвол) эргэж, ард талд нь үнэ, хоног, дэлгэрэнгүй мэдээлэл болон газрын зураг гарна.</p>
 
    <div class="filters" role="group" aria-label="Бүс нутгаар шүүх">
     <button class="chip" type="button" data-filter="all" aria-pressed="true">Бүгд</button>
@@ -85,31 +86,32 @@
     <button class="chip" type="button" data-filter="Зүүн" aria-pressed="false">Зүүн</button>
    </div>
 
+   <!-- Картуудыг script.js үүсгэнэ -->
    <div class="gallery" id="galleryGrid"></div>
   </section>
 
   <!-- Багц -->
-  <section class="section packages" id="packages">
-   <h2 class="section-title">Аяллын багцууд</h2>
-   <p class="lead">Жишээ үнэ, нэг хүнд ногдох. Бүлгийн хэмжээ, улирлаас хамаарч өөрчлөгдөнө.</p>
-   <div class="pack-grid">
+  <section class="section section--packages" id="packages">
+   <h2 class="section__title">Аяллын багцууд</h2>
+   <p class="section__lead">Жишээ үнэ, нэг хүнд ногдох. Бүлгийн хэмжээ, улирлаас хамаарч өөрчлөгдөнө.</p>
+   <div class="packs">
     <article class="pack">
-     <h3>Богино</h3>
-     <p class="pack-days">3 хоног</p>
-     <p class="pack-price">₮690,000</p>
-     <ul>
+     <h3 class="pack__title">Богино</h3>
+     <p class="pack__days">3 хоног</p>
+     <p class="pack__price">₮690,000</p>
+     <ul class="pack__list">
       <li>Нийслэлээс ойр чиглэл</li>
       <li>Гэр баазад 2 шөнө</li>
       <li>Хөтөч, унаа, 3 удаагийн хоол</li>
      </ul>
      <a class="btn" href="#zahialga">Сонгох</a>
     </article>
-    <article class="pack pack-featured">
-     <span class="ribbon">Эрэлттэй</span>
-     <h3>Стандарт</h3>
-     <p class="pack-days">7 хоног</p>
-     <p class="pack-price">₮1,690,000</p>
-     <ul>
+    <article class="pack pack--featured">
+     <span class="pack__ribbon">Эрэлттэй</span>
+     <h3 class="pack__title">Стандарт</h3>
+     <p class="pack__days">7 хоног</p>
+     <p class="pack__price">₮1,690,000</p>
+     <ul class="pack__list">
       <li>2 бүс нутгийн аялал</li>
       <li>Нүүдэлчин айлд зочлох</li>
       <li>Морь, тэмээ унах</li>
@@ -118,10 +120,10 @@
      <a class="btn" href="#zahialga">Сонгох</a>
     </article>
     <article class="pack">
-     <h3>Онцгой</h3>
-     <p class="pack-days">12 хоног</p>
-     <p class="pack-price">₮3,200,000</p>
-     <ul>
+     <h3 class="pack__title">Онцгой</h3>
+     <p class="pack__days">12 хоног</p>
+     <p class="pack__price">₮3,200,000</p>
+     <ul class="pack__list">
       <li>Говь, Хангай, Хөвсгөл</li>
       <li>Хувийн хөтөч, жолооч</li>
       <li>Наадам, бүргэдчин үзэх</li>
@@ -133,117 +135,117 @@
   </section>
 
   <!-- Монгол ёс заншил -->
-  <section class="section culture" id="culture">
-   <h2 class="section-title">Аяллын үеэр танилцах Монгол ёс заншил</h2>
-   <div class="culture-grid">
-    <article class="culture-card">
-     <h3>Гэр</h3>
-     <p>Нүүдэлчдийн уламжлалт орон сууц. Тооно, унь, хана гэсэн гол хэсгүүдтэй бөгөөд хурдан задалж, угсарч болдог.</p>
+  <section class="section" id="culture">
+   <h2 class="section__title">Аяллын үеэр танилцах Монгол ёс заншил</h2>
+   <div class="culture">
+    <article class="culture__card">
+     <h3 class="culture__title">Гэр</h3>
+     <p class="culture__text">Нүүдэлчдийн уламжлалт орон сууц. Тооно, унь, хана гэсэн гол хэсгүүдтэй бөгөөд хурдан задалж, угсарч болдог.</p>
     </article>
-    <article class="culture-card">
-     <h3>Таван хошуу мал</h3>
-     <p>Адуу, үхэр, тэмээ, хонь, ямаа. Монгол айлын хоол хүнс, хувцас, унаа тэргийг тэжээдэг.</p>
+    <article class="culture__card">
+     <h3 class="culture__title">Таван хошуу мал</h3>
+     <p class="culture__text">Адуу, үхэр, тэмээ, хонь, ямаа. Монгол айлын хоол хүнс, хувцас, унаа тэргийг тэжээдэг.</p>
     </article>
-    <article class="culture-card">
-     <h3>Эрийн гурван наадам</h3>
-     <p>Бөх, сур харваа, морь уралдаан. Жил бүр 7-р сард Үндэсний их баяр наадмаар тэмдэглэнэ.</p>
+    <article class="culture__card">
+     <h3 class="culture__title">Эрийн гурван наадам</h3>
+     <p class="culture__text">Бөх, сур харваа, морь уралдаан. Жил бүр 7-р сард Үндэсний их баяр наадмаар тэмдэглэнэ.</p>
     </article>
-    <article class="culture-card">
-     <h3>Цагаан сар</h3>
-     <p>Шинэ жилийн баяр. Бууз, ааруул, шижигнэсэн хонины мах, айраг дэвшүүлж, золгон ерөөл тавина.</p>
+    <article class="culture__card">
+     <h3 class="culture__title">Цагаан сар</h3>
+     <p class="culture__text">Шинэ жилийн баяр. Бууз, ааруул, шижигнэсэн хонины мах, айраг дэвшүүлж, золгон ерөөл тавина.</p>
     </article>
    </div>
   </section>
 
   <!-- Multimedia -->
   <section class="section" id="video">
-   <h2 class="section-title">Аяллын видео ба хөгжим</h2>
-   <div class="media-grid">
-    <figure class="media">
-     <video controls preload="none" poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'><rect width='16' height='9' fill='%230e2a47'/><circle cx='8' cy='4.5' r='1.5' fill='%23e6a923'/><path d='M7.4 3.8v1.4l1.3-.7z' fill='%230e2a47'/></svg>">
+   <h2 class="section__title">Аяллын видео ба хөгжим</h2>
+   <div class="media">
+    <figure class="media__item">
+     <video class="media__video" controls preload="none" poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'><rect width='16' height='9' fill='%230e2a47'/><circle cx='8' cy='4.5' r='1.5' fill='%23e6a923'/><path d='M7.4 3.8v1.4l1.3-.7z' fill='%230e2a47'/></svg>">
       <source src="media/tal.mp4" type="video/mp4">
       Таны хөтөч видео тоглуулахыг дэмжихгүй байна.
      </video>
-     <figcaption>Хөвсгөл нуурын өглөө</figcaption>
+     <figcaption class="media__caption">Хөвсгөл нуурын өглөө</figcaption>
     </figure>
-    <figure class="media">
-     <div class="audio-art" aria-hidden="true"></div>
-     <audio controls preload="none">
+    <figure class="media__item">
+     <div class="media__wave" aria-hidden="true"></div>
+     <audio class="media__audio" controls preload="none">
       <source src="media/morin-huur.mp3" type="audio/mpeg">
       Таны хөтөч аудио тоглуулахыг дэмжихгүй байна.
      </audio>
-     <figcaption>Морин хуурын аялгуу</figcaption>
+     <figcaption class="media__caption">Морин хуурын аялгуу</figcaption>
     </figure>
    </div>
   </section>
 
   <!-- Захиалга -->
-  <section class="section booking" id="zahialga">
-   <h2 class="section-title">Аялал захиалах</h2>
-   <p class="lead">Мэдээллээ үлдээвэл манай менежер 24 цагийн дотор холбогдоно.</p>
-   <form class="book-form" id="bookForm" novalidate>
-    <div class="field">
-     <label for="bName">Нэр *</label>
-     <input type="text" id="bName" name="name" required minlength="2" autocomplete="name">
+  <section class="section section--booking" id="zahialga">
+   <h2 class="section__title">Аялал захиалах</h2>
+   <p class="section__lead">Мэдээллээ үлдээвэл манай менежер 24 цагийн дотор холбогдоно.</p>
+   <form class="form" id="bookForm" novalidate>
+    <div class="form__field">
+     <label class="form__label" for="bName">Нэр *</label>
+     <input class="form__control" type="text" id="bName" name="name" required minlength="2" autocomplete="name">
     </div>
-    <div class="field">
-     <label for="bPhone">Утас *</label>
-     <input type="tel" id="bPhone" name="phone" required pattern="[0-9]{8}" title="8 оронтой тоо" placeholder="88112233" autocomplete="tel">
+    <div class="form__field">
+     <label class="form__label" for="bPhone">Утас *</label>
+     <input class="form__control" type="tel" id="bPhone" name="phone" required pattern="[0-9]{8}" title="8 оронтой тоо" placeholder="88112233" autocomplete="tel">
     </div>
-    <div class="field">
-     <label for="bEmail">Имэйл</label>
-     <input type="email" id="bEmail" name="email" autocomplete="email">
+    <div class="form__field">
+     <label class="form__label" for="bEmail">Имэйл</label>
+     <input class="form__control" type="email" id="bEmail" name="email" autocomplete="email">
     </div>
-    <div class="field">
-     <label for="bPlace">Чиглэл *</label>
-     <select id="bPlace" name="place" required><option value="">-- Сонгоно уу --</option></select>
+    <div class="form__field">
+     <label class="form__label" for="bPlace">Чиглэл *</label>
+     <select class="form__control" id="bPlace" name="place" required><option value="">-- Сонгоно уу --</option></select>
     </div>
-    <div class="field">
-     <label for="bDate">Хэзээ явах *</label>
-     <input type="date" id="bDate" name="date" required>
+    <div class="form__field">
+     <label class="form__label" for="bDate">Хэзээ явах *</label>
+     <input class="form__control" type="date" id="bDate" name="date" required>
     </div>
-    <div class="field">
-     <label for="bPeople">Хүний тоо *</label>
-     <input type="number" id="bPeople" name="people" required min="1" max="20" value="2">
+    <div class="form__field">
+     <label class="form__label" for="bPeople">Хүний тоо *</label>
+     <input class="form__control" type="number" id="bPeople" name="people" required min="1" max="20" value="2">
     </div>
-    <div class="field field-wide">
-     <label for="bNote">Нэмэлт хүсэлт</label>
-     <textarea id="bNote" name="note" rows="3"></textarea>
+    <div class="form__field form__field--wide">
+     <label class="form__label" for="bNote">Нэмэлт хүсэлт</label>
+     <textarea class="form__control" id="bNote" name="note" rows="3"></textarea>
     </div>
-    <div class="field-wide book-actions">
+    <div class="form__actions">
      <button class="btn" type="submit">Хүсэлт илгээх</button>
-     <p class="book-msg" id="bookMsg" role="status"></p>
+     <p class="form__msg" id="bookMsg" role="status"></p>
     </div>
    </form>
   </section>
  </main>
 
- <footer class="site-footer">
-  <div class="wrap footer-grid">
+ <footer class="footer">
+  <div class="wrap footer__grid">
    <section>
-    <h2>Тал нутаг Трэвел</h2>
-    <p>Монголын байгаль, соёлыг танилцуулах аяллын компани.</p>
+    <h2 class="footer__title">Тал нутаг Трэвел</h2>
+    <p class="footer__text">Монголын байгаль, соёлыг танилцуулах аяллын компани.</p>
    </section>
    <section>
-    <h2>Холбоо барих</h2>
-    <p>Улаанбаатар хот<br>info@talnutag.mn<br>+976 8811 2233</p>
+    <h2 class="footer__title">Холбоо барих</h2>
+    <p class="footer__text">Улаанбаатар хот<br>info@talnutag.mn<br>+976 8811 2233</p>
    </section>
    <section>
-    <h2>Цагийн хуваарь</h2>
-    <p>Да–Ба: 09:00 – 18:00<br>Бямба: 10:00 – 15:00</p>
+    <h2 class="footer__title">Цагийн хуваарь</h2>
+    <p class="footer__text">Да–Ба: 09:00 – 18:00<br>Бямба: 10:00 – 15:00</p>
    </section>
   </div>
-  <p class="copy">&copy; 2026 Веб зохиомж хичээл. Бүх эрх хуулиар хамгаалагдсан.</p>
+  <p class="footer__copy">&copy; 2026 Веб зохиомж хичээл. Бүх эрх хуулиар хамгаалагдсан.</p>
  </footer>
 
  <!-- Газрын зургийн цонх -->
- <dialog class="map-dialog" id="mapDialog" aria-labelledby="mapTitle">
-  <div class="map-head">
-   <h3 id="mapTitle"></h3>
-   <a class="map-ext" id="mapOpen" href="#" target="_blank" rel="noopener noreferrer">Google Maps дээр нээх</a>
-   <button class="map-close" id="mapClose" type="button">Хаах</button>
+ <dialog class="map-modal" id="mapDialog" aria-labelledby="mapTitle">
+  <div class="map-modal__head">
+   <h3 class="map-modal__title" id="mapTitle"></h3>
+   <a class="map-modal__link" id="mapOpen" href="#" target="_blank" rel="noopener noreferrer">Google Maps дээр нээх</a>
+   <button class="map-modal__close" id="mapClose" type="button">Хаах</button>
   </div>
-  <iframe id="mapFrame" title="Газрын зураг" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  <iframe class="map-modal__frame" id="mapFrame" title="Газрын зураг" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
  </dialog>
 
  <script src="script.js"></script>
