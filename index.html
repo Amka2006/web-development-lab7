@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Тал нутаг Трэвел: Монголын аяллын компани</title>
+ <script>document.documentElement.dataset.theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');</script>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+ <div class="progress" aria-hidden="true"></div>
+
+ <header class="site-header">
+  <a class="logo" href="#">Тал нутаг <span>Трэвел</span></a>
+
+  <div class="header-tools">
+   <a class="nav-cta" href="#zahialga">Аялал захиалах</a>
+   <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+    <span class="theme-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Харанхуй горим</span>
+   </button>
+   <button class="menu-toggle" id="menuToggle" type="button" aria-controls="menu" aria-expanded="false">
+    <span class="menu-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Цэс нээх</span>
+   </button>
+  </div>
+
+  <nav class="navbar" id="menu" aria-label="Үндсэн цэс">
+   <ul class="nav-list">
+    <li><a class="nav-link" href="#gallery">Чиглэл</a></li>
+    <li><a class="nav-link" href="#packages">Багц</a></li>
+    <li><a class="nav-link" href="#culture">Ёс заншил</a></li>
+    <li><a class="nav-link" href="#video">Видео</a></li>
+    <li><a class="nav-link" href="#zahialga">Захиалга</a></li>
+   </ul>
+  </nav>
+ </header>
+
+ <main>
+  <!-- Hero -->
+  <section class="hero">
+   <div class="hero-sun" aria-hidden="true"></div>
+   <span class="cloud c1" aria-hidden="true"></span>
+   <span class="cloud c2" aria-hidden="true"></span>
+   <div class="wrap hero-text">
+    <p class="eyebrow" style="--i:0">Монголын аяллын компани</p>
+    <h1 style="--i:1">Монголын сайхныг хамт нээе</h1>
+    <p style="--i:2">Хөвсгөл нуураас Говийн манхан хүртэл. Туршлагатай хөтөч, жижиг бүлэг, нүүдэлчин айлын зочломтгой байдалтай аялал.</p>
+    <div class="hero-actions" style="--i:3">
+     <a class="btn" href="#gallery">Аялал сонгох</a>
+     <a class="btn btn-ghost" href="#zahialga">Захиалга өгөх</a>
+    </div>
+    <dl class="hero-stats" style="--i:4">
+     <div><dt>Чиглэл</dt><dd>12</dd></div>
+     <div><dt>Жилийн туршлага</dt><dd>8+</dd></div>
+     <div><dt>Аялагчид</dt><dd>3,500+</dd></div>
+    </dl>
+   </div>
+  </section>
+
+  <!-- Trust bar -->
+  <section class="trust" aria-label="Давуу тал">
+   <ul class="wrap trust-list">
+    <li>Туршлагатай хөтөч</li>
+    <li>Жижиг бүлэг (8 хүртэл)</li>
+    <li>Аюулгүй байдлын даатгал</li>
+    <li>Орон нутгийн гэр бааз</li>
+   </ul>
+  </section>
+
+  <!-- Чиглэлүүд -->
+  <section class="section" id="gallery">
+   <h2 class="section-title">Аяллын чиглэлүүд</h2>
+   <p class="lead">Картан дээр хулганаа аваачвал (утсан дээр товшвол) эргэж, ард талд нь үнэ, хоног, дэлгэрэнгүй мэдээлэл болон газрын зураг гарна.</p>
+
+   <div class="filters" role="group" aria-label="Бүс нутгаар шүүх">
+    <button class="chip" type="button" data-filter="all" aria-pressed="true">Бүгд</button>
+    <button class="chip" type="button" data-filter="Хойд" aria-pressed="false">Хойд</button>
+    <button class="chip" type="button" data-filter="Өмнөд" aria-pressed="false">Өмнөд</button>
+    <button class="chip" type="button" data-filter="Төв" aria-pressed="false">Төв</button>
+    <button class="chip" type="button" data-filter="Баруун" aria-pressed="false">Баруун</button>
+    <button class="chip" type="button" data-filter="Зүүн" aria-pressed="false">Зүүн</button>
+   </div>
+
+   <div class="gallery" id="galleryGrid"></div>
+  </section>
+
+  <!-- Багц -->
+  <section class="section packages" id="packages">
+   <h2 class="section-title">Аяллын багцууд</h2>
+   <p class="lead">Жишээ үнэ, нэг хүнд ногдох. Бүлгийн хэмжээ, улирлаас хамаарч өөрчлөгдөнө.</p>
+   <div class="pack-grid">
+    <article class="pack">
+     <h3>Богино</h3>
+     <p class="pack-days">3 хоног</p>
+     <p class="pack-price">₮690,000</p>
+     <ul>
+      <li>Нийслэлээс ойр чиглэл</li>
+      <li>Гэр баазад 2 шөнө</li>
+      <li>Хөтөч, унаа, 3 удаагийн хоол</li>
+     </ul>
+     <a class="btn" href="#zahialga">Сонгох</a>
+    </article>
+    <article class="pack pack-featured">
+     <span class="ribbon">Эрэлттэй</span>
+     <h3>Стандарт</h3>
+     <p class="pack-days">7 хоног</p>
+     <p class="pack-price">₮1,690,000</p>
+     <ul>
+      <li>2 бүс нутгийн аялал</li>
+      <li>Нүүдэлчин айлд зочлох</li>
+      <li>Морь, тэмээ унах</li>
+      <li>Хөтөч, унаа, бүх хоол</li>
+     </ul>
+     <a class="btn" href="#zahialga">Сонгох</a>
+    </article>
+    <article class="pack">
+     <h3>Онцгой</h3>
+     <p class="pack-days">12 хоног</p>
+     <p class="pack-price">₮3,200,000</p>
+     <ul>
+      <li>Говь, Хангай, Хөвсгөл</li>
+      <li>Хувийн хөтөч, жолооч</li>
+      <li>Наадам, бүргэдчин үзэх</li>
+      <li>Бүх зардал багтсан</li>
+     </ul>
+     <a class="btn" href="#zahialga">Сонгох</a>
+    </article>
+   </div>
+  </section>
+
+  <!-- Монгол ёс заншил -->
+  <section class="section culture" id="culture">
+   <h2 class="section-title">Аяллын үеэр танилцах Монгол ёс заншил</h2>
+   <div class="culture-grid">
+    <article class="culture-card">
+     <h3>Гэр</h3>
+     <p>Нүүдэлчдийн уламжлалт орон сууц. Тооно, унь, хана гэсэн гол хэсгүүдтэй бөгөөд хурдан задалж, угсарч болдог.</p>
+    </article>
+    <article class="culture-card">
+     <h3>Таван хошуу мал</h3>
+     <p>Адуу, үхэр, тэмээ, хонь, ямаа. Монгол айлын хоол хүнс, хувцас, унаа тэргийг тэжээдэг.</p>
+    </article>
+    <article class="culture-card">
+     <h3>Эрийн гурван наадам</h3>
+     <p>Бөх, сур харваа, морь уралдаан. Жил бүр 7-р сард Үндэсний их баяр наадмаар тэмдэглэнэ.</p>
+    </article>
+    <article class="culture-card">
+     <h3>Цагаан сар</h3>
+     <p>Шинэ жилийн баяр. Бууз, ааруул, шижигнэсэн хонины мах, айраг дэвшүүлж, золгон ерөөл тавина.</p>
+    </article>
+   </div>
+  </section>
+
+  <!-- Multimedia -->
+  <section class="section" id="video">
+   <h2 class="section-title">Аяллын видео ба хөгжим</h2>
+   <div class="media-grid">
+    <figure class="media">
+     <video controls preload="none" poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'><rect width='16' height='9' fill='%230e2a47'/><circle cx='8' cy='4.5' r='1.5' fill='%23e6a923'/><path d='M7.4 3.8v1.4l1.3-.7z' fill='%230e2a47'/></svg>">
+      <source src="media/tal.mp4" type="video/mp4">
+      Таны хөтөч видео тоглуулахыг дэмжихгүй байна.
+     </video>
+     <figcaption>Хөвсгөл нуурын өглөө</figcaption>
+    </figure>
+    <figure class="media">
+     <div class="audio-art" aria-hidden="true"></div>
+     <audio controls preload="none">
+      <source src="media/morin-huur.mp3" type="audio/mpeg">
+      Таны хөтөч аудио тоглуулахыг дэмжихгүй байна.
+     </audio>
+     <figcaption>Морин хуурын аялгуу</figcaption>
+    </figure>
+   </div>
+  </section>
+
+  <!-- Захиалга -->
+  <section class="section booking" id="zahialga">
+   <h2 class="section-title">Аялал захиалах</h2>
+   <p class="lead">Мэдээллээ үлдээвэл манай менежер 24 цагийн дотор холбогдоно.</p>
+   <form class="book-form" id="bookForm" novalidate>
+    <div class="field">
+     <label for="bName">Нэр *</label>
+     <input type="text" id="bName" name="name" required minlength="2" autocomplete="name">
+    </div>
+    <div class="field">
+     <label for="bPhone">Утас *</label>
+     <input type="tel" id="bPhone" name="phone" required pattern="[0-9]{8}" title="8 оронтой тоо" placeholder="88112233" autocomplete="tel">
+    </div>
+    <div class="field">
+     <label for="bEmail">Имэйл</label>
+     <input type="email" id="bEmail" name="email" autocomplete="email">
+    </div>
+    <div class="field">
+     <label for="bPlace">Чиглэл *</label>
+     <select id="bPlace" name="place" required><option value="">-- Сонгоно уу --</option></select>
+    </div>
+    <div class="field">
+     <label for="bDate">Хэзээ явах *</label>
+     <input type="date" id="bDate" name="date" required>
+    </div>
+    <div class="field">
+     <label for="bPeople">Хүний тоо *</label>
+     <input type="number" id="bPeople" name="people" required min="1" max="20" value="2">
+    </div>
+    <div class="field field-wide">
+     <label for="bNote">Нэмэлт хүсэлт</label>
+     <textarea id="bNote" name="note" rows="3"></textarea>
+    </div>
+    <div class="field-wide book-actions">
+     <button class="btn" type="submit">Хүсэлт илгээх</button>
+     <p class="book-msg" id="bookMsg" role="status"></p>
+    </div>
+   </form>
+  </section>
+ </main>
+
+ <footer class="site-footer">
+  <div class="wrap footer-grid">
+   <section>
+    <h2>Тал нутаг Трэвел</h2>
+    <p>Монголын байгаль, соёлыг танилцуулах аяллын компани.</p>
+   </section>
+   <section>
+    <h2>Холбоо барих</h2>
+    <p>Улаанбаатар хот<br>info@talnutag.mn<br>+976 8811 2233</p>
+   </section>
+   <section>
+    <h2>Цагийн хуваарь</h2>
+    <p>Да–Ба: 09:00 – 18:00<br>Бямба: 10:00 – 15:00</p>
+   </section>
+  </div>
+  <p class="copy">&copy; 2026 Веб зохиомж хичээл. Бүх эрх хуулиар хамгаалагдсан.</p>
+ </footer>
+
+ <!-- Газрын зургийн цонх -->
+ <dialog class="map-dialog" id="mapDialog" aria-labelledby="mapTitle">
+  <div class="map-head">
+   <h3 id="mapTitle"></h3>
+   <a class="map-ext" id="mapOpen" href="#" target="_blank" rel="noopener noreferrer">Google Maps дээр нээх</a>
+   <button class="map-close" id="mapClose" type="button">Хаах</button>
+  </div>
+  <iframe id="mapFrame" title="Газрын зураг" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+ </dialog>
+
+ <script src="script.js"></script>
+</body>
+</html>
