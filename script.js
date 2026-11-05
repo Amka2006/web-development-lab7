@@ -1,188 +1,104 @@
-// ===== Цомгийн өгөгдөл =====
-// Зураг оруулах 3 арга (эхнийх нь байвал түүнийг ашиглана):
-//   1) img: 'https://...jpg'  → интернэт холбоос
-//   2) images/<key>.jpg       → lab07/images хавтсанд хийсэн файл
-//   3) Аль нь ч байхгүй бол scene (зурсан дүр зураг) харагдана
-// Үнэ, хоног нь жишээ. Тоо, хэмжээг эх сурвалжтай нь тулгаж шалгаарай.
+// ============================================================
+//  ЗУРГИЙН ХАЯГИЙН ХЭСЭГ
+//  Зураг бүрийн хаягийг (https://...) '' хоорондоо буулгана.
+//  Жишээ:  khuvsgul: 'https://images.unsplash.com/photo-xxxx',
+// ============================================================
+const images = {
+  khuvsgul:  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRC1u6yBUwes14z9WM0Dy9pziLnzbGb1rTVnqVGSnKWA&s=10',   // Хөвсгөл нуур
+  khongor:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAlhMT_LL4lacy5tFMQP8gfMCEj7fhw8J-tJ-w7y6xhQ&s=10',   // Хонгорын элс
+  suvraga:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv5x8QuT1thxRheZUc3ME8aljGDqxP95fXqNc8U_Q9rw&s=10',   // Цагаан сүврага
+  bayanzag:  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXprceCm_fHXsiInbk_2npUoU_LoDZ-gdkRefpKkdIXA&s=10',   // Баянзаг
+  orkhon:    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfkA2t7YTmCl_WB6O4zgfjASPZXHqSHxV9LG3bVSN-qg&s=10',   // Орхоны хүрхрээ
+  erdenezuu: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOioQyfKWh5PhXH0uqtZiXURsFzpsVxINQg5CR7S7oow&s=10',   // Эрдэнэ Зуу хийд
+  terkh:     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEAP-JfKidM5f0rBqdMXh8QGgygBECfyC7bJVnULtBQg&s=10',   // Тэрхийн цагаан нуур
+  altai:     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt7E5i-OESnP3SwS0W_SJQMy3agueZUGqJabZ_NSwltQ&s=10',   // Алтай Таван Богд
+  uvs:       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCGfODL40GJ3maGsWToQ8di10ej0BvkpDBNz2HLcwdTw&s=10',   // Увс нуур
+  hustai:    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBXgTPFNeI-vc6B9ui_Fdwm1kIilNR3LIJL5ONxizEYg&s=10',   // Хустайн нуруу
+  burkhan:   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr8_aQvVqU0KPczOYVK_QH5wauBThEExC8bP5Op_9jpA&s=10',   // Бурхан Халдун
+  terelj:    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtqMG3dtljSIKbcyaTTrpgiZ1NsA3-1NdvK3YK18eNMg&s=10'    // Тэрэлж
+};
+
+// ===== Аяллын өгөгдөл =====
+// map: Google Maps-д хайх нэр. Тоо, хэмжээг эх сурвалжтай нь тулгаж шалгаарай.
 const places = [
-  { key: 'khuvsgul', img: '', name: 'Хөвсгөл нуур', region: 'Хойд', aimag: 'Хөвсгөл аймаг', days: 5, price: 1250000,
-    scene: { type: 'lake', sky: ['#5aa9d6', '#d3ecf8'], sun: '#fff3c4', far: '#3b6e94', near: '#2c5a55', water: '#2a7fae', pines: 1 },
+  { key: 'khuvsgul', name: 'Хөвсгөл нуурын аялал', region: 'Хойд', aimag: 'Хөвсгөл аймаг', art: 'lake',
     map: 'Lake Khuvsgul, Mongolia', dist: 'Мөрөн хотоос ~100 км', season: '6–9-р сар',
-    text: 'Монголын хамгийн гүн цэнгэг устай нуур.',
-    facts: ['Урт нь ~136 км, хамгийн гүн нь ~262 м', 'Монголын цэнгэг усны ихэнх хувийг агуулдаг', 'Хойд талд цаатан иргэд амьдардаг'] },
-  { key: 'khongor', img: '', name: 'Хонгорын элс', region: 'Өмнөд', aimag: 'Өмнөговь аймаг', days: 4, price: 980000,
-    scene: { type: 'dunes', sky: ['#f7b862', '#fde9bd'], sun: '#fff1c2', c: ['#e3a652', '#c98638', '#a46825'] },
+    text: 'Монголын «Хөх сувд» хэмээн алдаршсан нууранд завиар аялж, цаатан айлд зочилно.',
+    facts: ['Нуурын урт ~136 км, хамгийн гүн нь ~262 м', 'Нуурын эрэгт морин аялал, завь, загасчлал', 'Хойд талд цаатан иргэдэд зочлох боломжтой'] },
+  { key: 'khongor', name: 'Хонгорын элсний аялал', region: 'Өмнөд', aimag: 'Өмнөговь аймаг', art: 'gobi',
     map: 'Khongoryn Els, Mongolia', dist: 'Улаанбаатараас ~800 км', season: '5–9-р сар',
-    text: 'Говийн хамгийн том элсэн манхан, «Дуут манхан».',
-    facts: ['Хэдэн зуун метр өндөр, ~180 км үргэлжилнэ', 'Салхитай үед элс «дуугардаг»', 'Хажуугаар Хонгор гол урсдаг'] },
-  { key: 'suvraga', img: '', name: 'Цагаан сүврага', region: 'Өмнөд', aimag: 'Дундговь аймаг', days: 2, price: 390000,
-    scene: { type: 'cliffs', sky: ['#f6d7a8', '#fdf1d8'], sun: '#fff3d0', cliff: '#efe9dc', stripe: '#c9bfa8', ground: '#d8b878' },
+    text: 'Говийн «Дуут манхан» дээр гарч, тэмээгээр аялж, элсэн манханд нар жаргахыг үзнэ.',
+    facts: ['Хэдэн зуун метр өндөр, ~180 км үргэлжилнэ', 'Тэмээн аялал, манханд авирах', 'Салхитай үед элс «дуугардаг»'] },
+  { key: 'suvraga', name: 'Цагаан сүвргийн аялал', region: 'Өмнөд', aimag: 'Дундговь аймаг', art: 'steppe',
     map: 'Tsagaan Suvarga, Mongolia', dist: 'Улаанбаатараас ~450 км', season: '5–10-р сар',
-    text: 'Олон өнгийн ордон шиг харагддаг эртний хадан хясаа.',
-    facts: ['Урт нь ~400 м орчим, олон сая жилийн настай', 'Далайн ёроол байсан үеийн тунамал давхарга', 'Нар жаргах үед өнгө нь өөрчлөгддөг'] },
-  { key: 'bayanzag', img: '', name: 'Баянзаг (Бамбат хад)', region: 'Өмнөд', aimag: 'Өмнөговь аймаг', days: 3, price: 720000,
-    scene: { type: 'cliffs', sky: ['#ee9e68', '#fbd8ad'], sun: '#ffe9c4', cliff: '#c4552f', stripe: '#8d3a1f', ground: '#d79a62' },
+    text: 'Олон өнгийн ордон шиг харагддаг хадан хясаанд зураг авахуулж, говийн аялалаа эхлүүлнэ.',
+    facts: ['Урт нь ~400 м орчим, олон сая жилийн настай', 'Зураг авахуулахад тохиромжтой', 'Нар жаргах үед өнгө нь өөрчлөгддөг'] },
+  { key: 'bayanzag', name: 'Баянзагийн аялал', region: 'Өмнөд', aimag: 'Өмнөговь аймаг', art: 'bayan',
     map: 'Bayanzag Flaming Cliffs, Mongolia', dist: 'Даланзадгадаас ~100 км', season: '5–9-р сар',
-    text: 'Динозаврын өндөг олдсон алдарт газар.',
-    facts: ['1920-иод онд Америкийн экспедиц дэлхийд анх нээсэн', 'Улаан хадан хясаа нарны гэрэлд галтай харагддаг', 'Саксаулын ой байдаг'] },
-  { key: 'orkhon', img: '', name: 'Орхоны хүрхрээ', region: 'Төв', aimag: 'Өвөрхангай аймаг', days: 5, price: 1150000,
-    scene: { type: 'falls', sky: ['#9cc9a9', '#e4f2e0'], wall: '#4a5648', green: '#4f7f52' },
+    text: 'Динозаврын өндөг олдсон алдарт «Бамбат хад»-аар аялж, саксаулын ойгоор алхана.',
+    facts: ['Динозаврын олдвороороо дэлхийд алдартай', 'Улаан хадан хясаа нарны гэрэлд галтай харагддаг', 'Саксаулын ойгоор алхах боломжтой'] },
+  { key: 'orkhon', name: 'Орхоны хүрхрээний аялал', region: 'Төв', aimag: 'Өвөрхангай аймаг', art: 'khangai',
     map: 'Orkhon Waterfall, Mongolia', dist: 'Улаанбаатараас ~600 км', season: '6–9-р сар',
-    text: 'Монголын хамгийн сайхан хүрхрээ, UNESCO-гийн өвийн бүс.',
-    facts: ['Өндөр нь ~20 м орчим', 'Орхоны хөндий нь 2004 онд UNESCO-д бүртгэгдсэн', 'Галт уулын гаралтай хавцалд оршино'] },
-  { key: 'erdenezuu', img: '', name: 'Эрдэнэ Зуу хийд', region: 'Төв', aimag: 'Өвөрхангай аймаг', days: 3, price: 650000,
-    scene: { type: 'temple', sky: ['#86b2dc', '#ecf4fb'], sun: '#fff6d6', hill: '#7fa06a' },
+    text: 'UNESCO-гийн өвийн бүс дэх хүрхрээнд очиж, хавцлаар явган алхаж, нүүдэлчин айлд хонож амарна.',
+    facts: ['Хүрхрээний өндөр ~20 м орчим', 'Орхоны хөндий 2004 онд UNESCO-д бүртгэгдсэн', 'Хавцлаар явган аялал хийнэ'] },
+  { key: 'erdenezuu', name: 'Эрдэнэ Зуугийн аялал', region: 'Төв', aimag: 'Өвөрхангай аймаг', art: 'khentii',
     map: 'Erdene Zuu Monastery, Mongolia', dist: 'Улаанбаатараас ~370 км', season: '5–10-р сар',
-    text: 'Монголын хамгийн эртний Буддын шашны хийдүүдийн нэг.',
+    text: 'Монголын хамгийн эртний хийдүүдийн нэгэнд зочилж, Хархорумын түүхэн нутгаар хөтөчтэй аялна.',
     facts: ['1586 онд байгуулагдсан', 'Эртний Хархорум хотын туурь дэргэд оршино', '108 суваргатай хэрмээр хүрээлэгдсэн'] },
-  { key: 'terkh', img: '', name: 'Тэрхийн цагаан нуур', region: 'Төв', aimag: 'Архангай аймаг', days: 4, price: 890000,
-    scene: { type: 'lake', sky: ['#7fb6d6', '#e1f2f8'], sun: '#fff7da', far: '#587a6a', near: '#3f5f4e', water: '#3a88a6', volcano: 1, pines: 1 },
+  { key: 'terkh', name: 'Тэрхийн цагаан нуурын аялал', region: 'Төв', aimag: 'Архангай аймаг', art: 'terkh',
     map: 'Terkhiin Tsagaan Lake, Mongolia', dist: 'Улаанбаатараас ~650 км', season: '6–9-р сар',
-    text: 'Галт уулын нуралтаар үүссэн, шувууны олон зүйлтэй нуур.',
-    facts: ['Тэрх голыг лаав хаасны улмаас үүссэн', 'Ойролцоогоор 16 км урт', 'Хорго галт уул ойрхон'] },
-  { key: 'altai', img: '', name: 'Алтай Таван Богд', region: 'Баруун', aimag: 'Баян-Өлгий аймаг', days: 8, price: 2400000,
-    scene: { type: 'snow', sky: ['#78a0d8', '#e8f0fc'], sun: '#ffffff', rock: '#56698f' },
+    text: 'Галт уулын нуралтаар үүссэн нуурын эрэгт амарч, шувуу ажиглан, Хорго уул руу авирна.',
+    facts: ['Нуурын урт ~16 км орчим', 'Шувуу ажиглах, загасчлах боломжтой', 'Хорго галт уул ойрхон'] },
+  { key: 'altai', name: 'Алтай Таван Богдын аялал', region: 'Баруун', aimag: 'Баян-Өлгий аймаг', art: 'altai',
     map: 'Altai Tavan Bogd National Park, Mongolia', dist: 'Өлгий хүртэл нисэх онгоцоор', season: '6–9-р сар',
-    text: 'Монголын хамгийн өндөр оргил бүхий цасан нуруу.',
-    facts: ['Хүйтэн оргил ~4,374 м', 'Поташины мөсөн гол ойрхон', 'Казах бүргэдчид уламжлалаа хадгалж байна'] },
-  { key: 'uvs', img: '', name: 'Увс нуур', region: 'Баруун', aimag: 'Увс аймаг', days: 6, price: 1650000,
-    scene: { type: 'lake', sky: ['#ee9a78', '#fde6c9'], sun: '#fff1d0', far: '#9a6f8e', near: '#7a5a6a', water: '#c97f88', birds: 1 },
+    text: 'Цасан оргилууд, мөсөн голын дундуур явган болон морин аялж, казах бүргэдчин айлд зочилно.',
+    facts: ['Хүйтэн оргил ~4,374 м', 'Поташины мөсөн гол ойрхон', 'Казах бүргэдчдийн уламжлалтай танилцана'] },
+  { key: 'uvs', name: 'Увс нуурын аялал', region: 'Баруун', aimag: 'Увс аймаг', art: 'lake',
     map: 'Uvs Lake, Mongolia', dist: 'Улаангомоос ~100 км', season: '6–9-р сар',
-    text: 'Монголын хамгийн том нуур, давстай. UNESCO-гийн өвийн сав газар.',
+    text: 'Монголын хамгийн том нуур, UNESCO-гийн өвийн сав газарт шувуу ажиглах аялал.',
     facts: ['Талбай нь ~3,350 км² орчим', '2003 онд UNESCO-д бүртгэгдсэн', 'Нүүдлийн шувууд амардаг'] },
-  { key: 'hustai', img: '', name: 'Хустайн нуруу', region: 'Төв', aimag: 'Төв аймаг', days: 1, price: 180000,
-    scene: { type: 'steppe', sky: ['#a7d3ea', '#f0f8ea'], sun: '#fff7d0', hill: ['#7aa65a', '#5d8a47'], herd: 1 },
+  { key: 'hustai', name: 'Хустайн нурууны аялал', region: 'Төв', aimag: 'Төв аймаг', art: 'khangai',
     map: 'Hustai National Park, Mongolia', dist: 'Улаанбаатараас ~100 км', season: '5–9-р сар',
-    text: 'Тахь (Пржевальскийн морь) эргэн ирсэн байгалийн цогцолборт газар.',
-    facts: ['1990-ээд онд тахийг дахин тавьсан', 'Ховор амьтан, шувууны олон зүйл', 'Нийслэлээс хамгийн ойр байгалийн цогцолбор'] },
-  { key: 'burkhan', img: '', name: 'Бурхан Халдун', region: 'Зүүн', aimag: 'Хэнтий аймаг', days: 3, price: 780000,
-    scene: { type: 'forest', sky: ['#9db8a9', '#e2ebe3'], t: ['#4a7a63', '#2f5a48', '#1d3b30'] },
+    text: 'Тахь (Пржевальскийн морь) ажиглах, нэг өдрийн богино аялал. Хотоос ойрхон.',
+    facts: ['Ховор амьтан, шувууны олон зүйл', 'Нэг өдрийн аялалд тохиромжтой', 'Нийслэлээс хамгийн ойр байгалийн цогцолбор'] },
+  { key: 'burkhan', name: 'Бурхан Халдуны аялал', region: 'Зүүн', aimag: 'Хэнтий аймаг', art: 'khentii',
     map: 'Burkhan Khaldun, Mongolia', dist: 'Улаанбаатараас ~250 км', season: '6–9-р сар',
-    text: 'Чингис хааны төрсөн нутаг, ариун уул.',
-    facts: ['2015 онд UNESCO-д бүртгэгдсэн', 'Онон, Хэрлэн, Туул голын эхтэй холбоотой', 'Монголчуудын онцгой хүндэтгэдэг ариун газар'] },
-  { key: 'terelj', img: '', name: 'Тэрэлж', region: 'Төв', aimag: 'Төв аймаг', days: 2, price: 320000,
-    scene: { type: 'steppe', sky: ['#86c3e6', '#eaf6f0'], sun: '#fff7d0', hill: ['#78a95f', '#5a8a45'], ger: 1, rocks: 1 },
+    text: 'Чингис хааны төрсөн нутаг, ариун уулын орчмоор түүхэн аялал хийнэ.',
+    facts: ['2015 онд UNESCO-д бүртгэгдсэн', 'Онон, Хэрлэн, Туул голын эхтэй холбоотой', 'Түүхэн сонирхолтой аялал'] },
+  { key: 'terelj', name: 'Тэрэлжийн аялал', region: 'Төв', aimag: 'Төв аймаг', art: 'steppe',
     map: 'Gorkhi-Terelj National Park, Mongolia', dist: 'Улаанбаатараас ~70 км', season: '5–10-р сар',
-    text: 'Гэрийн жуулчны бааз, Мэлхий хад бүхий дархан цаазат газар.',
+    text: 'Гэрийн жуулчны баазад хоноглож, Мэлхий хадыг үзэж, морь унана. Богино амралтанд тохиромжтой.',
     facts: ['Горхи-Тэрэлжийн байгалийн цогцолбор', 'Мэлхий хад, Аривал хийд', 'Нийслэлээс 1–2 цагийн зайтай'] }
 ];
 
-// ===== Зурсан дүр зураг (SVG): зураг байхгүй үед харагдана =====
-const rep = (n, f) => Array.from({ length: n }, (_, i) => f(i)).join('');
-const sunSvg = (c, x = 300, y = 170, r = 30) =>
-  c ? `<circle cx="${x}" cy="${y}" r="${r * 2}" fill="${c}" opacity=".25"/><circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>` : '';
-
-const drawers = {
-  lake: (g) => `
-    ${sunSvg(g.sun)}
-    <path d="M0 340 L70 262 L132 318 L212 226 L292 308 L352 258 L400 316 V380 H0Z" fill="${g.far}"/>
-    ${g.volcano ? `<path d="M110 384 L200 246 L290 384Z" fill="${g.near}"/><path d="M178 278 L200 246 L222 278 L208 272 L196 282Z" fill="#e8eef0" opacity=".7"/>` : ''}
-    <path d="M0 372 L90 336 L180 366 L262 340 L400 372 V392 H0Z" fill="${g.near}"/>
-    <rect y="380" width="400" height="160" fill="${g.water}"/>
-    <rect y="470" width="400" height="70" fill="#000" opacity=".16"/>
-    ${rep(10, (i) => `<rect x="${(i * 53) % 320 + 20}" y="${394 + i * 14}" width="${64 - (i % 3) * 16}" height="3" rx="2" fill="#fff" opacity=".35"/>`)}
-    ${g.pines ? rep(6, (i) => `<path d="M${10 + i * 17} 394 l8 -${42 + (i % 3) * 12} l8 ${42 + (i % 3) * 12}Z" fill="#1d3b30"/>`) : ''}
-    ${g.birds ? `<path d="M60 120 q8-10 16 0 q8-10 16 0 M130 90 q6-8 12 0 q6-8 12 0 M220 130 q6-8 12 0 q6-8 12 0" stroke="#fff" fill="none" stroke-width="2.2" opacity=".85"/>` : ''}`,
-
-  dunes: (g) => `
-    ${sunSvg(g.sun, 90, 150, 28)}
-    <path d="M0 330 Q120 270 230 330 T400 300 V540 H0Z" fill="${g.c[0]}"/>
-    <path d="M0 400 Q110 330 220 392 T400 370 V540 H0Z" fill="${g.c[1]}"/>
-    <path d="M0 470 Q120 410 240 462 T400 440 V540 H0Z" fill="${g.c[2]}"/>
-    ${rep(3, (i) => `<ellipse cx="${250 + i * 24}" cy="${322 - i * 2}" rx="8" ry="5" fill="#5a3a1a"/><path d="M${246 + i * 24} 326 v10 M${254 + i * 24} 326 v10" stroke="#5a3a1a" stroke-width="2"/>`)}`,
-
-  cliffs: (g) => `
-    ${sunSvg(g.sun, 90, 150, 26)}
-    <path d="M0 540 V350 L36 340 L52 262 L150 256 L170 318 L240 308 L270 214 L368 208 L386 292 L400 288 V540Z" fill="${g.cliff}"/>
-    ${rep(6, (i) => `<rect y="${384 + i * 16}" width="400" height="2" fill="${g.stripe}" opacity=".4"/>`)}
-    ${rep(14, (i) => `<path d="M${18 + i * 28} 384 V470" stroke="${g.stripe}" stroke-width="3" opacity=".4"/>`)}
-    <path d="M0 470 Q140 440 260 470 T400 460 V540 H0Z" fill="${g.ground}"/>`,
-
-  falls: (g) => `
-    <path d="M0 150 L150 190 L130 540 H0Z" fill="${g.wall}"/>
-    <path d="M400 130 L255 190 L275 540 H400Z" fill="${g.wall}"/>
-    <path d="M0 150 Q80 118 150 190 L0 192Z" fill="${g.green}"/>
-    <path d="M400 130 Q320 100 255 190 L400 192Z" fill="${g.green}"/>
-    <path d="M156 188 L248 188 L262 440 L146 440Z" fill="#fff" opacity=".92"/>
-    ${rep(5, (i) => `<path d="M${170 + i * 16} 196 V430" stroke="#bfe0ea" stroke-width="3" opacity=".7"/>`)}
-    <ellipse cx="204" cy="452" rx="112" ry="28" fill="#c6e6ee"/>
-    <circle cx="170" cy="440" r="26" fill="#fff" opacity=".45"/><circle cx="236" cy="436" r="30" fill="#fff" opacity=".4"/>
-    <path d="M110 540 Q205 470 292 540Z" fill="#7fc4d0"/>`,
-
-  temple: (g) => `
-    ${sunSvg(g.sun, 70, 120, 24)}
-    <path d="M0 400 Q100 340 200 390 T400 370 V540 H0Z" fill="${g.hill}"/>
-    <rect y="446" width="400" height="94" fill="#cdb98a"/>
-    <rect x="20" y="410" width="360" height="46" fill="#f3efe6"/>
-    ${rep(10, (i) => `<rect x="${32 + i * 36}" y="396" width="16" height="14" fill="#fff"/><path d="M${32 + i * 36} 396 l8 -14 l8 14Z" fill="#d9a53a"/><rect x="${32 + i * 36}" y="410" width="16" height="46" fill="#e4dccb"/>`)}
-    <rect x="150" y="340" width="100" height="72" fill="#b5362b"/>
-    <path d="M132 342 L200 296 L268 342Z" fill="#d9a53a"/>
-    <path d="M122 342 Q200 330 278 342 L268 352 H132Z" fill="#8f2a22"/>
-    <rect x="190" y="372" width="20" height="40" fill="#5a1a14"/>
-    <path d="M200 296 V270" stroke="#8f2a22" stroke-width="3"/><path d="M200 270 l16 6 l-16 6Z" fill="#d9a53a"/>`,
-
-  snow: (g) => `
-    ${sunSvg(g.sun, 320, 120, 22)}
-    <path d="M0 360 L80 220 L150 320 L220 170 L300 310 L360 230 L400 330 V540 H0Z" fill="${g.rock}"/>
-    <path d="M80 220 L58 262 L74 254 L90 272 L104 250Z" fill="#fff"/>
-    <path d="M220 170 L190 232 L210 222 L224 246 L242 220 L254 238Z" fill="#fff"/>
-    <path d="M360 230 L338 268 L352 260 L366 274 L380 258Z" fill="#fff"/>
-    <path d="M170 420 Q210 360 250 420 L310 540 H110Z" fill="#dff0fb"/>
-    <path d="M0 470 Q100 440 200 470 T400 455 V540 H0Z" fill="#6f8f6a"/>`,
-
-  steppe: (g) => `
-    ${sunSvg(g.sun, 300, 150, 28)}
-    <path d="M0 360 Q100 300 220 350 T400 330 V540 H0Z" fill="${g.hill[0]}"/>
-    <path d="M0 430 Q120 380 250 430 T400 410 V540 H0Z" fill="${g.hill[1]}"/>
-    ${g.ger ? `<rect x="82" y="420" width="56" height="30" fill="#f7f3ea"/><path d="M76 422 L110 392 L144 422Z" fill="#fff"/><rect x="104" y="430" width="12" height="20" fill="#b5362b"/>` : ''}
-    ${g.rocks ? `<ellipse cx="300" cy="424" rx="46" ry="30" fill="#8a8d86"/><ellipse cx="344" cy="434" rx="28" ry="20" fill="#9a9d95"/>` : ''}
-    ${g.herd ? rep(5, (i) => `<ellipse cx="${90 + i * 46}" cy="${440 + (i % 2) * 14}" rx="13" ry="7" fill="#6b4a2f"/><path d="M${84 + i * 46} ${446 + (i % 2) * 14} v9 M${96 + i * 46} ${446 + (i % 2) * 14} v9" stroke="#6b4a2f" stroke-width="2.4"/><circle cx="${104 + i * 46}" cy="${434 + (i % 2) * 14}" r="5" fill="#6b4a2f"/>`) : ''}`,
-
-  forest: (g) => {
-    const row = (y, h, c) => `<rect y="${y}" width="400" height="${540 - y}" fill="${c}"/>` +
-      rep(12, (i) => `<path d="M${i * 38 - 14} ${y} l${h / 4} -${h} l${h / 4} ${h}Z" fill="${c}"/>`);
-    return `<rect y="250" width="400" height="130" fill="#fff" opacity=".18"/>
-      ${row(380, 120, g.t[0])}<rect y="400" width="400" height="60" fill="#fff" opacity=".1"/>
-      ${row(444, 140, g.t[1])}${row(512, 160, g.t[2])}`;
-  }
-};
-
-const sceneSvg = (g, i) => `
-  <svg class="card__scene" viewBox="0 0 400 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs><linearGradient id="sky${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${g.sky[0]}"/><stop offset="1" stop-color="${g.sky[1]}"/></linearGradient></defs>
-    <rect width="400" height="540" fill="url(#sky${i})"/>${drawers[g.type](g)}
-  </svg>`;
-
 const grid = document.getElementById('galleryGrid');
-const fmt = (n) => '₮' + n.toLocaleString('en-US');
+
+// Google Maps холбоос (хайлтын нэрээр)
 const mapUrl = (q) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
 
-// ===== Картуудыг үүсгэх (BEM класс, --i нь stagger-ийн дугаар) =====
+// ===== Картуудыг үүсгэх (--i нь stagger-ийн дугаар) =====
 places.forEach((p, i) => {
+  const img = images[p.key];   // зургийн хаягийг дээрх хэсгээс авна
   grid.insertAdjacentHTML('beforeend', `
-    <article class="card card--in" tabindex="0" data-region="${p.region}" style="--i:${i}" aria-label="${p.name}">
-      <div class="card__inner">
+    <article class="card in" tabindex="0" data-region="${p.region}" style="--i:${i}" aria-label="${p.name}">
+      <div class="card-inner">
 
-        <div class="card__face card__face--front">
-          ${sceneSvg(p.scene, i)}
-          <img class="card__img" src="${p.img || `images/${p.key}.jpg`}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">
-          <span class="card__badge">${p.region}</span>
-          <span class="card__tag">${p.days} хоног</span>
-          <div class="card__caption"><h3 class="card__title">${p.name}</h3><p class="card__sub">${p.aimag}</p></div>
+        <div class="face front art art-${p.art}">
+          <img src="${img}" alt="${p.name}" loading="lazy" onerror="this.remove()">
+          <span class="badge">${p.region}</span>
+          <div class="cap"><h3>${p.name}</h3><p>${p.aimag}</p></div>
         </div>
 
-        <div class="card__face card__face--back">
-          <div class="card__body">
-            <h3 class="card__name">${p.name}</h3>
-            <p class="card__where">${p.region} · ${p.aimag}</p>
-            <p class="card__desc">${p.text}</p>
-            <ul class="card__facts">${p.facts.map((f) => `<li class="card__fact">${f}</li>`).join('')}</ul>
-            <ul class="pills"><li class="pills__item">${p.dist}</li><li class="pills__item">${p.season}</li></ul>
-            <p class="card__price"><strong class="card__price-value">${fmt(p.price)}</strong> / хүн · ${p.days} хоног</p>
-            <div class="card__actions">
-              <button class="card__btn" type="button" data-book="${p.key}">Захиалах</button>
-              <button class="card__btn card__btn--alt" type="button" data-q="${p.map}" data-name="${p.name}"><span class="pin" aria-hidden="true"></span>Газрын зураг</button>
-            </div>
+        <div class="face back" style="--img:url('${img}')">
+          <div class="back-body">
+            <h3>${p.name}</h3>
+            <p class="where">${p.region} · ${p.aimag}</p>
+            <p class="desc">${p.text}</p>
+            <ul class="facts">${p.facts.map((f) => `<li>${f}</li>`).join('')}</ul>
+            <ul class="pills"><li>${p.dist}</li><li>${p.season}</li></ul>
+            <button class="map-link" type="button" data-q="${p.map}" data-name="${p.name}">
+              <span class="pin" aria-hidden="true"></span>Google Maps дээр харах
+            </button>
           </div>
         </div>
 
@@ -192,25 +108,25 @@ places.forEach((p, i) => {
 
 const cards = [...grid.querySelectorAll('.card')];
 
-// ===== Товшилт: захиалах / газрын зураг / утсанд карт эргүүлэх =====
+// ===== Товшилт: газрын зураг нээх / утсанд карт эргүүлэх =====
 grid.addEventListener('click', (e) => {
-  const book = e.target.closest('[data-book]');
-  if (book) { bookPlace(book.dataset.book); return; }
-  const map = e.target.closest('[data-q]');
-  if (map) { openMap(map.dataset.q, map.dataset.name); return; }
+  const mapBtn = e.target.closest('.map-link');
+  if (mapBtn) { openMap(mapBtn.dataset.q, mapBtn.dataset.name); return; }
+  if (e.target.closest('a')) return;
   const card = e.target.closest('.card');
-  if (card) card.classList.toggle('card--flipped');
+  if (card) card.classList.toggle('flipped');
 });
 
 grid.addEventListener('keydown', (e) => {
   if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('card')) {
     e.preventDefault();
-    e.target.classList.toggle('card--flipped');
+    e.target.classList.toggle('flipped');
   }
 });
 
 // ===== Бүс нутгаар шүүх =====
 const chips = document.querySelectorAll('.chip');
+
 chips.forEach((chip) => {
   chip.addEventListener('click', () => {
     chips.forEach((c) => c.setAttribute('aria-pressed', c === chip));
@@ -219,40 +135,14 @@ chips.forEach((chip) => {
     cards.forEach((card) => {
       const show = filter === 'all' || card.dataset.region === filter;
       card.hidden = !show;
-      card.classList.remove('card--flipped', 'card--in');
+      card.classList.remove('flipped', 'in');
       if (show) {
         card.style.setProperty('--i', n++);   // stagger-ийг дахин тооцно
         void card.offsetWidth;                // animation-г дахин эхлүүлнэ
-        card.classList.add('card--in');
+        card.classList.add('in');
       }
     });
   });
-});
-
-// ===== Захиалгын форм =====
-const form = document.getElementById('bookForm');
-const select = document.getElementById('bPlace');
-const msg = document.getElementById('bookMsg');
-const dateInput = document.getElementById('bDate');
-
-places.forEach((p) => select.insertAdjacentHTML('beforeend', `<option value="${p.key}">${p.name} (${p.days} хоног, ${fmt(p.price)})</option>`));
-dateInput.min = new Date().toISOString().slice(0, 10);
-
-function bookPlace(key) {
-  select.value = key;
-  document.getElementById('zahialga').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => select.focus({ preventScroll: true }), 600);
-}
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  form.classList.add('form--checked');
-  if (!form.checkValidity()) { form.reportValidity(); msg.textContent = ''; return; }
-  const name = document.getElementById('bName').value.trim();
-  msg.textContent = `Баярлалаа, ${name}! Хүсэлтийг хүлээн авлаа. Бид тантай удахгүй холбогдоно.`;
-  form.reset();
-  form.classList.remove('form--checked');
-  document.getElementById('bPeople').value = 2;
 });
 
 // ===== Газрын зургийг цонхонд нээх =====
@@ -290,9 +180,9 @@ themeBtn.addEventListener('click', () => {
 const menuBtn = document.getElementById('menuToggle');
 const menu = document.getElementById('menu');
 menuBtn.addEventListener('click', () => {
-  const open = menu.classList.toggle('nav--open');
+  const open = menu.classList.toggle('open');
   menuBtn.setAttribute('aria-expanded', open);
 });
 menu.addEventListener('click', (e) => {
-  if (e.target.tagName === 'A') { menu.classList.remove('nav--open'); menuBtn.setAttribute('aria-expanded', 'false'); }
+  if (e.target.tagName === 'A') { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); }
 });

@@ -1,0 +1,13 @@
+@import 'abstracts/tokens';
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+
+@import 'base/base';
+@import 'layout/layout';
+
+// @each ашиглан зай (margin, padding) үүсгэх utility классууд
+$spacers: (0: 0, 1: 8px, 2: 16px, 3: 24px, 4: 32px);
+@each $key, $val in $spacers {
+  .m-#{$key} { margin: $val; }
+  .p-#{$key} { padding: $val; }
+}

@@ -1,14 +1,10 @@
 {
-  "name": "lab07-scss",
+  "name": "web-development-lab",
   "version": "1.0.0",
-  "description": "Лаб 7: Лаб 6-ийн CSS-ийг SCSS болгон refactor хийсэн",
-  "private": true,
-  "scripts": {
-    "build": "sass scss/main.scss css/style.css --style=compressed --no-source-map",
-    "build:dev": "sass scss/main.scss css/style.css --style=expanded",
-    "watch": "sass --watch scss/main.scss css/style.css --style=expanded"
-  },
-  "devDependencies": {
-    "sass": "^1.107.0"
-  }
+  "description": "",
+  "main": "script.js",
+ "scripts": {
+  "sass": "sass --watch scss/main.scss style.css",
+  "build:css": "sass --style compressed scss/main.scss style.css"
+}
 }

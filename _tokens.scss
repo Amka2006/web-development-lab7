@@ -1,0 +1,49 @@
+$tokens: (
+  colors: (
+    "bg": #f4f7fa,
+    "surface": #ffffff,
+    "text": #1d2a3a,
+    "muted": #5d6c7d,
+    "heading": #0e2a47,
+    "line": #dbe3ec,
+    "link": #1d4e89,
+    "accent": #1d4e89,
+    "night": #0e2a47,
+    "steppe": #4f7f52,
+    "gold": #e6a923
+  ),
+  radius: (
+    "default": 16px
+  ),
+  breakpoints: (
+    "tablet": 768px,
+    "desktop": 1024px,
+    "desktop-lg": 1280px
+  )
+);
+
+:root {
+  @each $key, $value in map-get($tokens, colors) {
+    --#{$key}: #{$value};
+  }
+  --radius: #{map-get(map-get($tokens, radius), "default")};
+  --shadow: 0 10px 24px rgba(14, 42, 71, 0.15);
+  --dur: 0.35s;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --font-head: "Philosopher", Georgia, serif;
+  --font-body: "Nunito Sans", Arial, sans-serif;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0b1624;
+  --surface: #14233a;
+  --text: #e6edf5;
+  --muted: #9db0c6;
+  --heading: #f2f6fb;
+  --line: #243650;
+  --link: #8bbcf0;
+  --accent: #2f6db5;
+  --shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  color-scheme: dark;
+}
